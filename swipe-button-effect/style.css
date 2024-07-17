@@ -14,7 +14,7 @@ a {
   padding: 40px 80px;
   position: relative;
   transition: all 1s;
-  overflow: hidden;
+  overflow: hidden; 
 }
 
 a:before {
