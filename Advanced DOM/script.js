@@ -30,7 +30,9 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-// Selecting elements
+//////////////////////////////////////////////
+
+// Selecting Elements
 console.log(document.documentElement);
 console.log(document.head);
 console.log(document.body);
