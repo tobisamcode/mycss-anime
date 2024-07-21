@@ -133,7 +133,7 @@ btnScrollTo.addEventListener("click", (e) => {
   section1.scrollIntoView({ behavior: "smooth" });
 });
 
-// ================================================================= TYPES OF EVENT AND EVENT HANDLERS =================================================================
+// =========================================== TYPES OF EVENT AND EVENT HANDLERS =================================================================
 const h1 = document.querySelector("h1");
 
 const alertH1 = (e) => {
@@ -178,3 +178,50 @@ console.log(head.parentNode);
 console.log(head.parentElement);
 
 // ================================================================= Building Tab Component =================================================================
+
+// TAB Component
+const tabsContainer = document.querySelector(".operations__tab-container");
+const tabs = document.querySelectorAll(".operations__tab");
+const tabsContent = document.querySelectorAll(".operations__content");
+
+tabsContainer.addEventListener("click", (e) => {
+  const clicked = e.target.closest(".operations__tab");
+  console.log(clicked);
+
+  // Guard clause
+  if (!clicked) return;
+
+  // Active tab
+  tabs.forEach((tab) => tab.classList.remove("operations__tab--active"));
+  tabsContent.forEach((tabContent) =>
+    tabContent.classList.remove("operations__content--active")
+  );
+  clicked.classList.add("operations__tab--active");
+
+  // Activate content area
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add("operations__content--active");
+});
+
+// ================================================ MENU FADE ANIMATION =================================
+const nav = document.querySelector(".nav");
+
+function handleHover(e) {
+  if (e.target.classList.contains("nav__link")) {
+    const link = e.target;
+    console.log("link: ", link);
+    const siblings = link.closest(".nav").querySelectorAll(".nav__link");
+    console.log("siblings: ", siblings);
+    const logo = link.closest(".nav").querySelector("img");
+    console.log("logo: ", logo);
+
+    siblings.forEach((el) => {
+      if (el !== link) el.style.opacity = this;
+    });
+    logo.style.opacity = this;
+  }
+}
+
+nav.addEventListener("mouseover", handleHover.bind(0.5));
+nav.addEventListener("mouseout", handleHover.bind(1));
