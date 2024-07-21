@@ -250,9 +250,12 @@ nav.addEventListener("mouseout", handleHover.bind(1));
 // const observer = new IntersectionObserver(obsCallback, obsOptions);
 // observer.observe(section1);
 
+const headerHeight = nav.getBoundingClientRect().height;
+
+console.log("headerHeight", headerHeight);
+
 const stickyNav = function (entries) {
   const [entry] = entries;
-  console.log("entry", entry);
 
   if (!entry.isIntersecting) nav.classList.add("sticky");
   else nav.classList.remove("sticky");
@@ -261,7 +264,94 @@ const stickyNav = function (entries) {
 const headerObserver = new IntersectionObserver(stickyNav, {
   root: null,
   threshold: 0,
-  rootMargin: "-90px",
+  rootMargin: `-${headerHeight}px`,
 });
 
 headerObserver.observe(header);
+
+// =================================== Revealing Sections on scroll ===================================
+
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+
+  entry.target.classList.remove("section--hidden");
+  observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15, // 15% of the target element is visible in the viewport
+});
+
+allSections.forEach(function (section) {
+  sectionObserver.observe(section);
+  // section.classList.add("section--hidden");
+});
+
+// ========================== Lazy Loading Images ============================
+
+const images = document.querySelectorAll("img[data-src]");
+
+const loadImg = function (entries, observer) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+
+  // Replace src with data-src
+  entry.target.src = entry.target.dataset.src;
+  entry.target.addEventListener("load", function () {
+    entry.target.classList.remove("lazy-img");
+  });
+
+  observer.unobserve(entry.target);
+};
+
+const imgObserver = new IntersectionObserver(loadImg, {
+  root: null,
+  threshold: 0,
+});
+
+images.forEach((img) => imgObserver.observe(img));
+
+// ===================================================== SLIDER =============================================
+
+const slides = document.querySelectorAll(".slide");
+const btnLeft = document.querySelector(".slider__btn--left");
+const btnRight = document.querySelector(".slider__btn--right");
+
+let currentSlide = 0;
+const maxSlides = slides.length;
+
+goToSlide(currentSlide);
+
+function goToSlide(slide) {
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+  );
+}
+
+// NEXT SLIDE
+const nextSlide = function () {
+  if (currentSlide === maxSlides - 1) {
+    currentSlide = 0;
+  } else {
+    currentSlide++;
+  }
+
+  goToSlide(currentSlide);
+};
+
+// PREVIOUS SLIDE
+const prevSlide = function () {
+  if (currentSlide === 0) {
+    currentSlide = maxSlides - 1;
+  } else {
+    currentSlide--;
+  }
+  goToSlide(currentSlide);
+};
+
+btnRight.addEventListener("click", nextSlide);
+btnLeft.addEventListener("click", prevSlide);
