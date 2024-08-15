@@ -47,7 +47,7 @@ ul li a span {
   color: white;
   font-size: 20px;
   text-transform: capitalize;
-  transition-delay: 0.5s;
+  transition-delay: 0.1s;
 }
 
 ul li a:hover span:nth-child(1) {
@@ -70,11 +70,11 @@ ul li a:before {
   background-color: #16a085;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.5s;
+  transition: transform 0.2s;
 }
 
 ul li a:hover:before {
   transform: scaleX(1);
   transform-origin: left;
-  transition-delay: 0.5s;
+  transition-delay: 0.2s;
 }
