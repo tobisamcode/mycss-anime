@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #09161d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  position: relative;
+  width: 320px;
+  height: 420px;
+  background: #122936;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.card:before {
+  content: "";
+  position: absolute;
+  background: #219bf3;
+  top: -50%;
+  width: 100%;
+  height: 100%;
+  transform: skewY(-15deg);
+  transition: 0.5s;
+}
+
+.card:hover:before {
+  top: -70%;
+  transform: skewY(30deg);
+}
+
+.imgbox {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  z-index: 1;
+}
+
+img {
+  max-width: 100%;
+  transition: 0.5s;
+}
+
+.card:hover img {
+  max-width: 50%;
+}
+
+.content-box {
+  position: relative;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+h3 {
+  font-size: 18px;
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.price {
+  font-size: 24px;
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.buy {
+  position: relative;
+  padding: 10px 30px;
+  text-decoration: none;
+  color: white;
+  border-radius: 30px;
+  background: #219bf3;
+  text-transform: uppercase;
+  letter-spacing: apx;
+  transition: 0.5s;
+  opacity: 0;
+  top: 200px;
+}
+
+.card:hover .buy {
+  opacity: 1;
+  top: 0px;
+}
