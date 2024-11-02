@@ -1,0 +1,30 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  background-color: #26de81;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  font-family: arial;
+  font-size: 90px;
+  line-height: 90px;
+  letter-spacing: 15px;
+  text-shadow: 0 1px 0 #efefef, 0 2px 0 #efefef, 0 3px 0 #efefef,
+    0 4px 0 #efefef, 0 30px 5px rgba(0, 0, 0, 0.1);
+  animation: float 2s linear alternate infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: rotate(5deg);
+  }
+
+  100% {
+    transform: rotate(-5deg);
+  }
+}
