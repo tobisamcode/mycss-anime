@@ -6,11 +6,12 @@ div {
   width: 150px;
   height: 150px;
   background-color: red;
-  animation: moving 5s;
+  animation: moving 3s;
   animation-fill-mode: both;
   animation-delay: 2s;
-  animation-iteration-count: 1;
+  animation-iteration-count: infinite;
   animation-timing-function: linear;
+  animation-direction: alternate;
 }
 
 @keyframes moving {
