@@ -12,6 +12,7 @@ body {
   width: 150px;
   height: 150px;
   position: relative;
+  border: 1px;
 }
 
 span {
